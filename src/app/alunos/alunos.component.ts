@@ -45,7 +45,7 @@ export class AlunosComponent implements OnInit {
     this.enableEditIndex = -1;
   }
 
-  enableEditMethod(e, i) {
+  editRow(e, i) {
     let arrayAlunos = JSON.parse(localStorage.getItem('myArrayAlunos'));
     this.model.nome = arrayAlunos[i].Nome;
     this.model.email = arrayAlunos[i].Email;
@@ -54,7 +54,7 @@ export class AlunosComponent implements OnInit {
     this.enableEditIndex = i;
   }
 
-  remover(e, i){
+  removeRow(e, i){
     this.responseAlunos = JSON.parse(localStorage.getItem('myArrayAlunos'));
     this.responseAlunos.splice(i, 1);
     localStorage.setItem('myArrayAlunos', JSON.stringify(this.responseAlunos));
