@@ -10,6 +10,8 @@ import { AlunoService } from './aluno.service';
 export class AlunosComponent implements OnInit {
 
   responseAlunos: any;
+  enableEdit = false;
+  enableEditIndex = -1;
 
   model: Aluno = new Aluno();
 
@@ -20,9 +22,17 @@ export class AlunosComponent implements OnInit {
       DataNascimento: this.model.dataNascimento,
       Sexo: this.model.sexo
     };
-    this.responseAlunos.push(objAluno);
+
+    //user is editing the table row
+    if(this.enableEditIndex != -1){
+      this.responseAlunos.splice(this.enableEditIndex, 1, objAluno);
+    } else {
+      //user is adding a new row to the table
+      this.responseAlunos.push(objAluno);
+    }
+
     localStorage.setItem('myArrayAlunos', JSON.stringify(this.responseAlunos));
-    //console.log(JSON.parse(localStorage.getItem('myArrayAlunos')));
+    console.log(JSON.parse(localStorage.getItem('myArrayAlunos')));
 
     this.resetValues();
   }
@@ -32,6 +42,16 @@ export class AlunosComponent implements OnInit {
     this.model.email = '';
     this.model.dataNascimento = '';
     this.model.sexo = '';
+    this.enableEditIndex = -1;
+  }
+
+  enableEditMethod(e, i) {
+    let arrayAlunos = JSON.parse(localStorage.getItem('myArrayAlunos'));
+    this.model.nome = arrayAlunos[i].Nome;
+    this.model.email = arrayAlunos[i].Email;
+    this.model.dataNascimento = arrayAlunos[i].DataNascimento;
+    this.model.sexo = arrayAlunos[i].Sexo;
+    this.enableEditIndex = i;
   }
 
   constructor(public alunoService: AlunoService) { }

@@ -2,9 +2,6 @@ table {
     width: 100%;
 }
 
-table thead {
-    background-color: #2196f3;
-}
 
 table td {
     border: 1px;
