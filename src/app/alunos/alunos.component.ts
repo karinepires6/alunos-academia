@@ -54,6 +54,12 @@ export class AlunosComponent implements OnInit {
     this.enableEditIndex = i;
   }
 
+  remover(e, i){
+    this.responseAlunos = JSON.parse(localStorage.getItem('myArrayAlunos'));
+    this.responseAlunos.splice(i, 1);
+    localStorage.setItem('myArrayAlunos', JSON.stringify(this.responseAlunos));
+  }
+
   constructor(public alunoService: AlunoService) { }
 
   ngOnInit(): void {

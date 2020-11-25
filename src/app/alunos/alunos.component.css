@@ -2,7 +2,18 @@ table {
     width: 100%;
 }
 
-
 table td {
     border: 1px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2196f3;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0c7cd5;
+    border-color: #0062cc;
 }
